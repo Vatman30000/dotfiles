@@ -1,0 +1,7 @@
+-- Options are automatically loaded before lazy.nvim startup
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Add any additional options here
+-- Установка прозрачного фона для NeoVim
+-- vim.opt.winblend = 15 -- Прозрачность плавающих окон (0-100)
+-- vim.opt.pumblend = 15 -- Прозрачность выпадающих меню (0-100)
+-- vim.opt.background = "light" -- или 'dark', может влиять на видимость
