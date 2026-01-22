@@ -8,14 +8,28 @@ local modkey = vars.modkey
 local terminal = vars.terminal
 local tagkeys = require("key.tagkey")
 
+-- local function volume_emit(arg)
+-- 	awful.spawn.easy_async_with_shell("amixer set Master" .. " " .. arg, function(stdout)
+-- 		local value = stdout
+-- 		local percentage = string.match(stdout, "%[%d+%%%]")
+-- 		local status = string.match(stdout, "%[%a+%]")
+-- 		if value ~= nil or value ~= "" then
+-- 			awesome.emit_signal("laptop::volume", percentage, status)
+-- 		end
+-- 	end)
+-- end
 local function volume_emit(arg)
-	awful.spawn.easy_async_with_shell("amixer set Master" .. " " .. arg, function(stdout)
-		local value = stdout
-		local percentage = string.match(stdout, "%[%d+%%%]")
-		local status = string.match(stdout, "%[%a+%]")
-		if value ~= nil or value ~= "" then
-			awesome.emit_signal("laptop::volume", percentage, status)
-		end
+	awful.spawn.easy_async_with_shell("amixer set Master " .. arg .. " | tail -n 1", function(stdout)
+		-- Ищем число БЕЗ скобок и %:  55%
+		local percentage = string.match(stdout, "(%d?%d?%d)%%")
+		-- Ищем статус типа [on] или [off]
+		local status = string.match(stdout, "%[(o[^%]]*)%]") or string.match(stdout, "%[(%a+)%]")
+
+		-- Защита от nil
+		percentage = percentage or "0"
+		status = status or "unknown"
+
+		awesome.emit_signal("laptop::volume", percentage, status)
 	end)
 end
 volume_emit("+") -- Otherwise you don't see widget info until the first invocation
@@ -33,9 +47,9 @@ tagkey = gears.table.join(
 	awful.key({ modkey }, "k", function()
 		awful.client.focus.byidx(-1)
 	end, { description = "focus previous by index", group = "client" }),
-	awful.key({ modkey }, "w", function()
-		mymainmenu:show()
-	end, { description = "show main menu", group = "awesome" }),
+	-- awful.key({ modkey }, "w", function()
+	-- 	mymainmenu:show()
+	-- end, { description = "show main menu", group = "awesome" }),
 
 	-- Layout manipulation
 	awful.key({ modkey, "Shift" }, "j", function()

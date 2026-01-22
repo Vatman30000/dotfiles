@@ -1,0 +1,78 @@
+# ~/.config/alacritty/alacritty.toml
+
+[font]
+size = 12.0
+
+# [font.normal]
+# family = "JetBrains Mono"
+# style = "Regular"
+
+[window]
+# Прозрачность (0.0 - полная прозрачность, 1.0 - непрозрачно)
+opacity = 0.5
+# Отступы (по желанию, аналог padding в css)
+padding = { x = 10, y = 10 }
+# Заголовок окна (опционально)
+title = "Alacritty"
+
+# Настройки запуска оболочки (аналог default_prog)
+[terminal]
+shell = { program = "zellij" } 
+# Если zellij не в PATH, укажите полный путь: program = "/usr/bin/zellij"
+
+# Цветовая схема Catppuccin Macchiato
+# (Встроена прямо сюда, чтобы не качать лишние файлы)
+[colors]
+primary = { background = "#24273a", foreground = "#cad3f5" }
+cursor = { text = "#24273a", cursor = "#f4dbd6" }
+vi_mode_cursor = { text = "#24273a", cursor = "#b7bdf8" }
+
+[colors.search]
+matches = { foreground = "#24273a", background = "#a5adcb" }
+focused_match = { foreground = "#24273a", background = "#a6da95" }
+
+[colors.hints]
+start = { foreground = "#24273a", background = "#eed49f" }
+end = { foreground = "#24273a", background = "#a5adcb" }
+
+[colors.selection]
+text = "#24273a"
+background = "#f4dbd6"
+
+[colors.normal]
+black = "#494d64"
+red = "#ed8796"
+green = "#a6da95"
+yellow = "#eed49f"
+blue = "#8aadf4"
+magenta = "#f5bde6"
+cyan = "#8bd5ca"
+white = "#b8c0e0"
+
+[colors.bright]
+black = "#5b6078"
+red = "#ed8796"
+green = "#a6da95"
+yellow = "#eed49f"
+blue = "#8aadf4"
+magenta = "#f5bde6"
+cyan = "#8bd5ca"
+white = "#a5adcb"
+
+[colors.dim]
+black = "#494d64"
+red = "#ed8796"
+green = "#a6da95"
+yellow = "#eed49f"
+blue = "#8aadf4"
+magenta = "#f5bde6"
+cyan = "#8bd5ca"
+white = "#b8c0e0"
+
+# Клавиатурные сокращения
+# key = клавиша, mods = модификаторы, action = действие
+[[keyboard.bindings]]
+key = "N"
+mods = "Control|Shift"
+action = "ToggleFullscreen"
+

@@ -59,13 +59,11 @@ PACMAN_PACKAGES=(
   "curl"
   "wget"
   "openssh"
-  "vim"
 
   # Media/Graphics/Fonts
   "ffmpeg"
   "imagemagick"
   "pandoc"
-  "tesseract"
   "ttf-jetbrains-mono-nerd"
   "noto-fonts"
   "noto-fonts-cjk"
@@ -82,10 +80,8 @@ PACMAN_PACKAGES=(
   "xorg-xev"
   "picom"
   "rofi"
-  "nitrogen"
 
   # Audio/System
-  "pulseaudio"
   "pavucontrol"
   "alsa-utils"
   "networkmanager"

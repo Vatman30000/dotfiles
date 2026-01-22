@@ -21,7 +21,7 @@ alias nvimconfig="$EDITOR ~/.config/nvim/init.lua"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 alias obsidian="obsidian --no-sandbox"
 # Set list of themes to pick from when loading at random
@@ -87,8 +87,8 @@ alias obsidian="obsidian --no-sandbox"
 plugins=(git )
 
 source $ZSH/oh-my-zsh.sh
-source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/fzf-git.sh/fzf-git.sh
 
 
@@ -139,7 +139,7 @@ bindkey '^[[B' history-search-forward
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
@@ -174,3 +174,4 @@ function y() {
 }
 export PATH="/home/linuxbrew/.linuxbrew/opt/node@22/bin:$PATH"
 export GOOGLE_CLOUD_PROJECT="durable-limiter-467711-e0"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
