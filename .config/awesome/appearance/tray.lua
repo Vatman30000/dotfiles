@@ -92,4 +92,69 @@ function widgets.mybattery(s)
 		widget = wibox.container.background,
 	})
 end
+-- ====== ВИДЖЕТ СЕТИ ======
+-- подставь реальные интерфейсы
+local WIFI_IF = "wlp2s0"
+local ETH_IF = "enp3s0"
+
+local function parse_nmcli()
+	-- nmcli d: STATE column: connected/disconnected/unavailable и TYPE: wifi/ethernet [web:99][web:102]
+	local handle = io.popen("nmcli -t -f DEVICE,TYPE,STATE d 2>/dev/null")
+	if not handle then
+		return nil
+	end
+	local out = handle:read("*all") or ""
+	handle:close()
+
+	local active_type = nil
+	for line in out:gmatch("[^\n]+") do
+		-- формат: DEVICE:TYPE:STATE
+		local dev, tp, state = line:match("([^:]+):([^:]+):([^:]+)")
+		if dev and tp and state then
+			if state == "connected" then
+				-- запоминаем приоритет: сначала ethernet, потом wifi
+				if tp == "ethernet" then
+					active_type = "eth"
+					break
+				elseif tp == "wifi" and active_type ~= "eth" then
+					active_type = "wifi"
+				end
+			end
+		end
+	end
+
+	return active_type
+end
+
+function widgets.mynetwork(s)
+	local netwidget = wibox.widget({
+		widget = wibox.widget.textbox(),
+		screen = s,
+	})
+
+	local function update_net()
+		local t = parse_nmcli()
+		-- можно заменить на иконки из nerd‑font/awesome‑font
+		if t == "eth" then
+			netwidget.text = "󰈀 " -- ethernet icon (если есть nerd font)
+		elseif t == "wifi" then
+			netwidget.text = "󰤨 " -- wifi icon
+		else
+			netwidget.text = "󰖪 " -- нет сети / оффлайн
+		end
+	end
+
+	update_net()
+
+	-- обновляем каждые 5 секунд
+	awful.widget.watch("nmcli -t -f DEVICE,TYPE,STATE d", 5, function()
+		update_net()
+	end, netwidget)
+
+	return wibox.widget({
+		netwidget,
+		fg = beautiful.border_focus,
+		widget = wibox.container.background,
+	})
+end
 return widgets

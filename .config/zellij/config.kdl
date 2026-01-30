@@ -494,7 +494,7 @@ themes {
  
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
-scrollback_editor "/home/linuxbrew/.linuxbrew/bin/nvim"
+scrollback_editor "nvim"
  
 // A fixed name to always give the Zellij session.
 // Consider also setting `attach_to_session true,`
@@ -560,7 +560,6 @@ theme "your_theme_name"
 // Default: true (if the host terminal supports it)
 // 
 // support_kitty_keyboard_protocol false
- 
 // Whether to stack panes when resizing beyond a certain size
 // Default: true
 // 

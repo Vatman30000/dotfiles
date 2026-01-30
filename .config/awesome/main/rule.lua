@@ -56,14 +56,17 @@ local myrules = {
 	{ rule_any = { type = { "normal", "dialog" } }, properties = { titlebars_enabled = false } },
 
 	-- Set zen to always map on the tag named "2" on screen 1.
-	{ rule = { class = "wezterm" }, properties = { screen = 1, urgent = false, maximized = false, tag = "1-term" } },
-	{ rule = { class = "zen" }, properties = { screen = 1, urgent = false, maximized = false, tag = "2-zen" } },
-	{ rule = { class = "obsidian" }, properties = { screen = 1, urgent = false, maximized = false, tag = "3-obs" } },
-	{ rule = { class = "Telegram" }, properties = { screen = 1, urgent = false, maximized = false, tag = "4-tel" } },
-	{ rule = { class = "Code" }, properties = { screen = 1, urgent = false, maximized = false, tag = "5-code" } },
-	{ rule = { class = "Anki" }, properties = { screen = 1, urgent = false, maximized = false, tag = "6-anki" } },
+	{ rule = { class = "kitty" }, properties = { screen = 1, urgent = false, maximized = false, tag = " \u{f120} " } },
 	{
-		rule = { class = "Hidamari" },
+		rule = { class = "firefox" },
+		properties = { screen = 1, urgent = false, maximized = false, tag = " \u{f0ac} " },
+	},
+	{ rule = { class = "obsidian" }, properties = { screen = 1, urgent = false, maximized = false, tag = " obs " } },
+	{ rule = { class = "Telegram" }, properties = { screen = 1, urgent = false, maximized = false, tag = " tel " } },
+	{ rule = { class = "Code" }, properties = { screen = 1, urgent = false, maximized = false, tag = " \u{f121} " } },
+	{ rule = { class = "Anki" }, properties = { screen = 1, urgent = false, maximized = false, tag = " anki " } },
+	{
+		rule = { class = "mpv" },
 		properties = {
 			sticky = true,
 			screen = 1,

@@ -24,6 +24,7 @@ alias nvimconfig="$EDITOR ~/.config/nvim/init.lua"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 
 alias obsidian="obsidian --no-sandbox"
+alias chrome="google-chrome-stable"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -175,3 +176,6 @@ function y() {
 export PATH="/home/linuxbrew/.linuxbrew/opt/node@22/bin:$PATH"
 export GOOGLE_CLOUD_PROJECT="durable-limiter-467711-e0"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+# opencode
+export PATH=/home/alexandr/.opencode/bin:$PATH

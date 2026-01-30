@@ -47,12 +47,13 @@ awful.screen.connect_for_each_screen(function(s)
 		appearance.mytasklist(s), -- Middle widget
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
+			appearance.mytraywidgets.mynetwork(s),
 			appearance.mytraywidgets.mybattery(s),
 			appearance.mytraywidgets.myvolume(s),
 			appearance.mytraywidgets.mykbdlayout(s),
 			appearance.mytraywidgets.mytextclock(s),
 			-- appearance.mytraywidgets.mysystray(s),
-			wibox.container.margin(appearance.mytraywidgets.mysystray(s), 2, 2, 2, 2, 2),
+			wibox.container.margin(appearance.mytraywidgets.mysystray(s), 2, 2, 2, 2, 2, 2),
 			s.mylayoutbox,
 		},
 	})
