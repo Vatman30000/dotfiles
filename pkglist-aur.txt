@@ -1,0 +1,10 @@
+google-chrome
+paru
+paru-debug
+rtw88-dkms-git
+tlrc
+visual-studio-code-bin
+xwinwrap-git
+xwinwrap-git-debug
+yay
+yay-debug
