@@ -1,7 +1,6 @@
 google-chrome
 paru
 paru-debug
-rtw88-dkms-git
 tlrc
 visual-studio-code-bin
 xwinwrap-git

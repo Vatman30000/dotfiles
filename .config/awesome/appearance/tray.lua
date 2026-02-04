@@ -63,7 +63,7 @@ function widgets.mybattery(s)
 	})
 
 	-- тут меняем BAT0 -> BAT1
-	local bat_path = "/sys/class/power_supply/BAT1"
+	local bat_path = "/sys/class/power_supply/BAT0"
 
 	local function update_battery()
 		local perc = read_file(bat_path .. "/capacity")
