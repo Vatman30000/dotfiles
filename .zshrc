@@ -1,6 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+if command -v fastfetch >/dev/null 2>&1; then
+  fastfetch
+fi
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -9,7 +12,7 @@ fi
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 # Установить Neovim как редактор по умолчанию
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -87,10 +90,11 @@ alias chrome="google-chrome-stable"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git )
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/fzf-git.sh/fzf-git.sh
+
+# source ~/fzf-git.sh/fzf-git.sh
 
 
 # User configuration
@@ -125,7 +129,6 @@ alias cd="z"
 alias obsidian="obsidian --no-sandbox"
 # ---- Eza (better ls) -----
 
-alias ls="eza --icons=always"
 # history setup
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000
@@ -173,9 +176,27 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-export PATH="/home/linuxbrew/.linuxbrew/opt/node@22/bin:$PATH"
-export GOOGLE_CLOUD_PROJECT="durable-limiter-467711-e0"
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+autoload -U add-zsh-hook
 
+load-local-conf() {
+  if [[ -f .zsh-local && -r .zsh-local ]]; then
+    source .zsh-local
+  fi
+}
+
+add-zsh-hook chpwd load-local-conf
+# export PATH="/home/linuxbrew/.linuxbrew/opt/node@22/bin:$PATH"
+export GOOGLE_CLOUD_PROJECT="durable-limiter-467711-e0"
+source $HOME/.local/share/../bin/env
+# source ~/powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/cachyos-zsh-config/cachyos-config.zsh
+source ~/.p10k.zsh
 # opencode
 export PATH=/home/alexandr/.opencode/bin:$PATH
+
+. "$HOME/.local/share/../bin/env"
+alias ls="eza --icons=always"
+alias ll="eza -lh --icons=always"
+zen() {
+  flatpak run app.zen_browser.zen "$@"
+}
