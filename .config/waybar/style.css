@@ -1,0 +1,373 @@
+@import "machiatto.css";
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    /* font-family:Roboto, Helvetica, Arial, sans-serif; */
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 16px;
+}
+
+window#waybar {
+    background-color: @base;
+    border-bottom: 3px solid @surface0;
+    color: @text;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: @surface1;
+}
+
+window#waybar.chromium {
+    background-color: @base;
+    border: none;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 12px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px @text;
+}
+
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+    background-color: @yellow;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    background-color: transparent;
+    color: @text;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#workspaces button.focused, #workspaces button.active {
+    background-color: @surface1;
+    box-shadow: inset 0 -3px @lavender;
+}
+
+#workspaces button.urgent {
+    background-color: @red;
+}
+
+#mode {
+    background-color: @surface1;
+    box-shadow: inset 0 -3px @text;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 10px;
+    color: @text;
+    border-radius: 12px;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+#window {
+    background-color: @surface1;
+    color: @text;
+    border-radius: 12px;
+    padding: 0 12px;
+    opacity: 0.8;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: @surface1;
+}
+
+#battery {
+    background-color: @surface0;
+    color: @text;
+}
+
+#battery.charging, #battery.plugged {
+    color: @base;
+    background-color: @green;
+}
+
+@keyframes blink {
+    to {
+        background-color: @text;
+        color: @base;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @base;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+    padding-right: 15px;
+}
+
+#power-profiles-daemon.performance {
+    background-color: @red;
+    color: @base;
+}
+
+#power-profiles-daemon.balanced {
+    background-color: @blue;
+    color: @base;
+}
+
+#power-profiles-daemon.power-saver {
+    background-color: @green;
+    color: @base;
+}
+
+label:focus {
+    background-color: @base;
+}
+
+#cpu {
+    background-color: @sky;
+    color: @base;
+    border-radius: 12px 0 0 12px;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+#memory {
+    background-color: @mauve;
+    color: @base;
+}
+
+#disk {
+    background-color: @peach;
+    color: @base;
+}
+
+#backlight {
+    background-color: @teal;
+    color: @base;
+}
+
+#network {
+    background-color: @sapphire;
+    color: @base;
+}
+
+#network.disconnected {
+    background-color: @red;
+    color: @base;
+}
+
+#pulseaudio {
+    background-color: @yellow;
+    color: @base;
+}
+
+#pulseaudio.muted {
+    background-color: @surface2;
+    color: @text;
+}
+
+#wireplumber {
+    background-color: @flamingo;
+    color: @base;
+}
+
+#wireplumber.muted {
+    background-color: @red;
+    color: @base;
+}
+
+#custom-media {
+    background-color: @teal;
+    color: @base;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: @green;
+    color: @base;
+}
+
+#custom-media.custom-vlc {
+    background-color: @peach;
+    color: @base;
+}
+
+#temperature {
+    background-color: @sky;
+    color: @base;
+    border-radius: 0 12px 12px 0;
+    margin-left: -5px;
+    padding-left: 0;
+}
+
+#temperature.critical {
+    background-color: @red;
+    color: @base;
+}
+
+#tray {
+    background-color: @surface0;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
+}
+
+#idle_inhibitor {
+    background-color: @surface1;
+}
+
+#idle_inhibitor.activated {
+    background-color: @overlay2;
+    color: @base;
+}
+
+#mpd {
+    background-color: @teal;
+    color: @base;
+}
+
+#mpd.disconnected {
+    background-color: @red;
+    color: @base;
+}
+
+#mpd.stopped {
+    background-color: @surface2;
+    color: @text;
+}
+
+#mpd.paused {
+    background-color: @sapphire;
+    color: @base;
+}
+
+#language {
+    background: @sky;
+    color: @base;
+    padding: 0 10px;
+    margin: 0 5px;
+    min-width: 16px;
+    border-radius: 12px;
+}
+
+#keyboard-state {
+    background: @green;
+    color: @base;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: @base;
+}
+
+#privacy-item.screenshare {
+    background-color: @peach;
+}
+
+#privacy-item.audio-in {
+    background-color: @green;
+}
+
+#privacy-item.audio-out {
+    background-color: @blue;
+}
+
+#custom-gpu_usage {
+  padding: 0 10px;
+  background: @green;
+  color: @base;
+  border-radius: 12px;
+}
+
+#custom-xbox {
+  padding: 0 10px;
+  background: @surface0;
+  color: @green;
+  border-radius: 12px;
+}

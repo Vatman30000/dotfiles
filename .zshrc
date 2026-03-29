@@ -200,3 +200,12 @@ alias ll="eza -lh --icons=always"
 zen() {
   flatpak run app.zen_browser.zen "$@"
 }
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/alexandr/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
