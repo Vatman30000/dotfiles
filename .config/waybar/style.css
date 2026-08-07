@@ -309,7 +309,7 @@ label:focus {
     color: @base;
     padding: 0 10px;
     margin: 0 5px;
-    min-width: 16px;
+    min-width: 22px;
     border-radius: 12px;
 }
 

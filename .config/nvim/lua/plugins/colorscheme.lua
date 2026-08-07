@@ -8,6 +8,10 @@ return {
       flavour = "macchiato",
       transparent_background = true,
       term_colors = true,
+      float = {
+        transparent = true,
+        solid = true,
+      },
       integrations = {
         cmp = true,
         telescope = true,
@@ -16,10 +20,10 @@ return {
         -- ... другие интеграции
       },
     },
-    -- config = function(_, opts)
-    --   require("catppuccin").setup(opts)
-    --   vim.cmd.colorscheme("catppuccin")
-    -- end,
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme("catppuccin")
+    end,
   },
   -- {
   --   "akinsho/bufferline.nvim",

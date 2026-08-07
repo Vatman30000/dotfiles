@@ -14,3 +14,26 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.foldmethod = "marker"
   end,
 })
+local function set_transparent()
+  local groups = {
+    "Normal",
+    "NormalNC",
+    "NormalFloat",
+    "FloatBorder",
+    "SignColumn",
+    "StatusLine",
+    "StatusLineNC",
+    "TabLine",
+    "TabLineFill",
+    "TabLineSel",
+    "WinSeparator",
+  }
+
+  for _, group in ipairs(groups) do
+    vim.api.nvim_set_hl(0, group, { bg = "NONE" })
+  end
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = set_transparent,
+})

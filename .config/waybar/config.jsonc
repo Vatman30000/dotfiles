@@ -31,12 +31,13 @@
     "format": "{icon}",
     "format-icons": {
       "1": "",
-      "2": "",
+      "2": "󰺕",
       "3": "",
       "4": "",
       "5": "",
       "6": "",
       "7": "󰨇",
+      "8": "",
       "urgent": "",
       "default": ""
     }
@@ -47,7 +48,10 @@
   "interval": 30
 },
 "hyprland/language": {
-  "format": "{short}"
+  "format": "{short}",
+  // "format-en": "US",
+  // "format-ru": "RU",
+  "max-length": 2
 },
 "tray": {
   // "icon-size": 21,

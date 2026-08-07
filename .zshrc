@@ -20,6 +20,7 @@ export GIT_EDITOR='nvim'
 # Опционально: алиас для быстрого редактирования конфигов
 alias zshconfig="$EDITOR ~/.zshrc"
 alias nvimconfig="$EDITOR ~/.config/nvim/init.lua"
+alias jupyter='nocorrect jupyter'
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -59,7 +60,7 @@ alias chrome="google-chrome-stable"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -128,6 +129,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 alias cd="z"
 alias obsidian="obsidian --no-sandbox"
 # ---- Eza (better ls) -----
+# alias ls="eza --icons=always"
 
 # history setup
 HISTFILE=$HOME/.zhistory
@@ -197,9 +199,11 @@ export PATH=/home/alexandr/.opencode/bin:$PATH
 . "$HOME/.local/share/../bin/env"
 alias ls="eza --icons=always"
 alias ll="eza -lh --icons=always"
-zen() {
-  flatpak run app.zen_browser.zen "$@"
-}
+alias la="eza -lAh --icons=always"
+alias keepass="org.keepassxc.KeePassXC"
+# zen() {
+#   flatpak run app.zen_browser.zen "$@"
+# }
 
 # >>> juliaup initialize >>>
 
@@ -209,3 +213,8 @@ path=('/home/alexandr/.juliaup/bin' $path)
 export PATH
 
 # <<< juliaup initialize <<<
+if [ -f ~/.zsh_nocorrect ]; then
+  while read -r COMMAND; do
+    alias $COMMAND="nocorrect $COMMAND"
+  done < ~/.zsh_nocorrect
+fi

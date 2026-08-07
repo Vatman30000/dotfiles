@@ -16,8 +16,8 @@ padding = { x = 10, y = 10 }
 title = "Alacritty"
 
 # Настройки запуска оболочки (аналог default_prog)
-[terminal]
-shell = { program = "zellij" } 
+# [terminal]
+# shell = { program = "zellij" } 
 # Если zellij не в PATH, укажите полный путь: program = "/usr/bin/zellij"
 
 # Цветовая схема Catppuccin Macchiato
