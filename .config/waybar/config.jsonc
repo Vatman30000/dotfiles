@@ -10,8 +10,10 @@
 ],
 
 "modules-right": [
-  "custom/xbox",
+  // "custom/xbox",
   "pulseaudio",
+  // "mpris",
+  "custom/media",
   "network",
   "power-profiles-daemon",
   "memory",
@@ -46,6 +48,28 @@
   "format": "{}",
   "exec": "~/.config/waybar/xbox_battery.sh",
   "interval": 30
+},
+  "mpris": {
+  "player": "playerctld",
+  "format": "{status_icon}  {artist} — {title}",
+  "format-paused": "󰏤  {artist} — {title}",
+  "format-stopped": "",
+  "status-icons": {
+    "playing": "󰐊",
+    "paused": "󰏤",
+    "stopped": "󰓛"
+  },
+  "tooltip-format": "{player}\n{artist} — {title}\n{album}",
+  "max-length": 45
+},
+"custom/media": {
+  "exec": "playerctl metadata --format '{{artist}} — {{title}}' 2>/dev/null || echo ''",
+  "interval": 2,
+  "max-length": 40,
+  "on-click": "playerctl play-pause",
+  "on-click-middle": "playerctl previous",
+  "on-click-right": "playerctl next",
+  "tooltip": true
 },
 "hyprland/language": {
   "format": "{short}",
